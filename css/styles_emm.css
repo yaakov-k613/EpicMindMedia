@@ -1,80 +1,265 @@
-:root{
-  --ink:#060b30; --accent:#ffa500; --white:#fff; --plum:#483033; --blue:#0074e4;
+:root {
+  --ink: #060b30;
+  --accent: #ffa500;
+  --white: #ffffff;
+  --plum: #483033;
+  --blue: #0074e4;
 }
 
-/* Reset */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'Segoe UI', Tahoma, sans-serif;
-  font-size:16px; line-height:1.5; color:var(--ink);
-  background-color:#060b30;
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+/* ======== Reset ======== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Header */
-.header{
-  position:sticky; top:0; z-index:1000;
-  background:transparent;           /* no conflict; starts transparent over hero */
-  color:var(--ink);
-  box-shadow:0 2px 10px rgba(0,0,0,.06);
-  transition:background-color .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background-color: #060b30;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Light, translucent when scrolled */
-.header.is-scrolled{
-  background:rgba(255,255,255,.82);
-  box-shadow:0 6px 24px rgba(0,0,0,.10);
+/* ======== Header ======== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: transparent;
+  color: var(--ink);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s ease;
 }
-@supports (backdrop-filter:blur(8px)) or (-webkit-backdrop-filter:blur(8px)){
-  .header.is-scrolled{backdrop-filter:saturate(170%) blur(8px); -webkit-backdrop-filter:saturate(170%) blur(8px)}
+
+/* === Fully Transparent Scroll Effect === */
+.header.is-scrolled {
+  background: transparent;           /* completely see-through */
+  box-shadow: none;                  /* remove any shadow */
+  backdrop-filter: none;             /* remove blur/glass */
+  -webkit-backdrop-filter: none;
 }
 
-.container{max-width:1200px;margin:auto;padding:0 1rem}
-.header__content{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:1rem 0}
-.logo img{height:56px;width:auto;border-radius:12px}
-
-/* Desktop nav */
-.nav{display:flex;align-items:center;gap:2rem}
-.nav__list{display:flex;align-items:center;gap:1.5rem;list-style:none}
-.nav__list a{color:var(--ink);text-decoration:none;font-weight:500;transition:color .2s}
-.header:not(.is-scrolled) .nav__list a{color:#fff}     /* white links over dark hero */
-.nav__list a:hover,.nav__list a:focus{color:var(--accent)}
-.nav__actions{display:flex;align-items:center;gap:.75rem}
-.btn{display:inline-block;padding:.6rem 1rem;border-radius:.65rem;font-weight:600;text-decoration:none}
-/* .btn--ghost{border:1px solid rgba(6,11,48,.2);color:var(--ink)}
-.btn--ghost:hover{border-color:var(--ink)} */
-.btn--accent{background:var(--accent);color:var(--ink)}
-.btn--accent:hover{filter:brightness(.95)}
-
-/* Dropdown */
-.nav__item--has-dropdown{position:relative}
-.nav__dropdown{
-  position:absolute; top:140%; left:0; min-width:180px; background:var(--white);
-  border:1px solid rgba(6,11,48,.1); border-radius:.75rem; box-shadow:0 10px 24px rgba(0,0,0,.08);
-  padding:.5rem; display:none
+/* Keep text & buttons clearly visible */
+.header.is-scrolled .nav__list a {
+  color: #ffffff;                    /* white links */
 }
-.nav__item--has-dropdown:focus-within .nav__dropdown,
-.nav__item--has-dropdown:hover .nav__dropdown{display:block}
-.nav__dropdown a{display:block; padding:.5rem .75rem; border-radius:.5rem}
-.nav__dropdown a:hover{background:rgba(255,165,0,.12)}
 
-/* Mobile */
-.nav-toggle{display:none;flex-direction:column;gap:4px;background:none;border:0;cursor:pointer}
-.nav-toggle__bar{width:24px;height:3px;background:var(--ink);border-radius:2px;transition:background .2s}
-.header:not(.is-scrolled) .nav-toggle__bar{background:#fff} /* white icon over dark hero */
+.header.is-scrolled .btn--accent {
+  background: var(--accent);         /* keep orange button visible */
+  color: var(--ink);
+}
 
-@media (max-width:992px){
-  .nav-toggle{display:flex}
-  .nav{
-    position:fixed; inset:0 0 0 auto; width:min(80vw,340px); background:var(--white);
-    box-shadow:-12px 0 24px rgba(0,0,0,.08);
-    padding:6.5rem 1.25rem 1.25rem; flex-direction:column; align-items:stretch; gap:1.25rem;
-    transform:translateX(100%); transition:transform .3s ease
+.header.is-scrolled .nav-toggle__bar {
+  background: #ffffff;               /* white hamburger icon */
+}
+
+.header.is-scrolled .logo img {
+  opacity: 1;                        /* ensure logo stays visible */
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.logo img {
+  height: 56px;
+  width: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+/* ======== Navigation ======== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav__list a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* white links when header is transparent */
+.header:not(.is-scrolled) .nav__list a {
+  color: #ffffff;
+}
+
+.nav__list a:hover,
+.nav__list a:focus {
+  color: var(--accent);
+}
+
+/* Buttons */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn--accent {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.btn--accent:hover {
+  filter: brightness(0.95);
+}
+
+/* ======== Mobile ======== */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-toggle__bar {
+  width: 24px;
+  height: 3px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+/* white hamburger before scroll */
+.header:not(.is-scrolled) .nav-toggle__bar {
+  background: #ffffff;
+}
+
+/* ======== Responsive ======== */
+@media (max-width: 992px) {
+  .nav-toggle {
+    display: flex;
   }
-  .nav.nav--open{transform:translateX(0)}
-  .nav__list{flex-direction:column;align-items:flex-start;gap:1rem}
 
-  .nav__dropdown{position:static;display:none;border:none;box-shadow:none;padding:0}
-  /* .nav__item--has-dropdown.open .nav__dropdown{display:block} */
-  .nav__actions{flex-direction:column;align-items:stretch}
+  .nav {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(80vw, 340px);
+    background: var(--white);
+    box-shadow: -12px 0 24px rgba(0, 0, 0, 0.08);
+    padding: 6.5rem 1.25rem 1.25rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav.nav--open {
+    transform: translateX(0);
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ===== HERO SECTION BASE ===== */
+.hero {
+  position: relative;          /* So absolute children (video/overlay) stay within section */
+  width: 100%;                 /* Stretch full width of page */
+  min-height: 72vh;            /* Covers most of viewport height */
+  overflow: hidden;            /* Hides overflow from video edges */
+}
+
+/* ===== BACKGROUND VIDEO ===== */
+.hero__video-wrapper {
+  position: absolute;          /* Layer video behind text */
+  inset: 0;                    /* Stretches to all sides (top, right, bottom, left) */
+  width: 100%;
+  height: 100%;
+  z-index: -2;                 /* Keeps it below overlay and content */
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* Crops video to fill entire section */
+}
+
+/* ===== OVERLAY ===== */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 11, 48, 0.45) 0%,   /* Top: light navy */
+    rgba(6, 11, 48, 0.65) 60%,  /* Middle: darker */
+    rgba(6, 11, 48, 0.75) 100%  /* Bottom: darkest */
+  );
+  z-index: -1;                 /* Above video, below text */
+}
+
+/* ===== CONTENT ===== */
+.hero__content {
+  position: relative;          /* Keeps text above overlay */
+  color: #fff;                 /* White text for contrast */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;                   /* Space between h1, p, and button */
+  padding: 18vh 1rem 16vh;     /* Centers content vertically */
+  max-width: 900px;            /* Limit line width for readability */
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 6vw, 4rem);  /* Scales with screen size */
+  line-height: 1.05;
+}
+
+.hero p {
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  opacity: 0.95;
+  max-width: 60ch;             /* Keeps line length readable */
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .hero__video { display: none; } /* Hide video for users who disable motion */
+}
+/* white hamburger before scroll */
+.header:not(.is-scrolled) .nav-toggle__bar {
+  background: #ffffff;
 }

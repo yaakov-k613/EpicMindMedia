@@ -1,73 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMM</title>
-    <!-- <link rel="icon" type="image/x-icon" href="./img/favicon_emm.png"> -->
-     <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
-     <link rel="stylesheet" href="./css/styles_emm.css">
-     <script src="./js/header-scroll.js"></script>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Epic Mind Media</title>
+  <link rel="icon" href="./img/favicon.ico" />
+  <link rel="stylesheet" href="./css/styles_emm.css" />
+  <script src="./js/header-scroll.js" defer></script>
 </head>
 <body>
-    <!-- ================= HEADER ================= -->
-<header class="header" role="banner">
-  <div class="container header__content">
-    <!-- Brand -->
-    <a href="/" class="logo" aria-label="Epic Mind Media — Home">
-      <img src="./img/logo_emm.png" alt="Epic Mind Media logo">
-    </a>
+  <header class="header" role="banner">
+    <div class="container header__content">
+      <a href="index.html" class="logo" aria-label="Epic Mind Media — Home">
+        <img src="./img/logo_emm.png" alt="Epic Mind Media logo" />
+      </a>
 
-    <!-- Mobile Toggle -->
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-      <span class="nav-toggle__bar"></span>
-    </button>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
 
-    <!-- Primary Nav -->
-    <nav id="primary-nav" class="nav" aria-label="Main Navigation">
-      <ul class="nav__list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Services</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-
-        <!-- Pages Dropdown -->
-        <!-- <li class="nav__item--has-dropdown">
-          <button class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-            Pages
-            <span class="nav__chevron" aria-hidden="true">▾</span>
-          </button>
-          <ul class="nav__dropdown" role="menu">
-            <li role="none"><a role="menuitem" href="#about">About</a></li>
-            <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
-            <li role="none"><a role="menuitem" href="#blog">Blog</a></li>
-            <li role="none"><a role="menuitem" href="#signin">Sign In</a></li>
-            <li role="none"><a role="menuitem" href="#signup">Sign Up</a></li>
-          </ul>
-        </li>
-
-        <li><a href="#support">Support</a></li>
-      </ul> -->
-
-      <!-- Right-side Actions -->
-      <div class="nav__actions">
-        <!-- <a class="btn btn--ghost" href="#signin">Sign In</a> -->
-        <a class="btn btn--accent" href="#start">Start a Project</a>
-      </div>
-    </nav>
+      <nav id="primary-nav" class="nav" aria-label="Main">
+        <ul class="nav__list">
+          <li><a href="#home" aria-current="page">Home</a></li>
+          <li><a href="#features">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+        <div class="nav__actions">
+          <a class="btn btn--accent" href="#start">Start a Project</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+<!-- ================= HERO SECTION ================= -->
+<section class="hero" id="home" aria-label="Epic Mind Media hero">
+  
+  <!-- Video Wrapper (holds YouTube video) -->
+  <div class="hero__video-wrapper">
+    <!-- 
+      YouTube embed parameters:
+      autoplay=1 → starts playing automatically
+      mute=1 → required for autoplay to work
+      loop=1 + playlist=video_id → loops video seamlessly
+      controls=0 → hides player controls
+      showinfo=0, rel=0, modestbranding=1 → cleaner look
+    -->
+    <iframe 
+      class="hero__video"
+      src="https://www.youtube.com/embed/_Kcc25R9L60?autoplay=1&mute=1&loop=1&playlist=_Kcc25R9L60&controls=0&showinfo=0&rel=0&modestbranding=1"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+    ></iframe>
   </div>
-</header>
-<!-- ================ END HEADER ================ -->
 
-<!-- Space Fillers for testing header scroll -->
-<img src="./img/space_filler1.png" alt="Epic Mind Media Logo">
-<br>
-<img src="./img/space_filler1.png" alt="Epic Mind Media Logo">
-<br>
-<img src="./img/space_filler1.png" alt="Epic Mind Media Logo">
-<br>
-<img src="./img/space_filler1.png" alt="Epic Mind Media Logo">
+  <!-- Dark gradient overlay for readability -->
+  <div class="hero__overlay"></div>
+
+  <!-- Text and CTA content on top of video -->
+  <div class="hero__content container">
+    <h1>Creativity that feels human.</h1>
+    <p>Stories + strategy for nonprofits, small businesses, and growing brands.</p>
+    <a class="btn btn--accent" href="#start">Start a Project</a>
+  </div>
+</section>
+<!-- ================ END HERO ================ -->
+
+
+
+
+
+  <!-- temporary filler -->
+  <img src="./img/space_filler1.png" alt="" />
+  <br>
+   <br>
+    <br>
+  <img src="./img/space_filler1.png" alt="" />
+  <br>
+  <img src="./img/space_filler1.png" alt="" />
 </body>
 </html>
