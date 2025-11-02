@@ -36,15 +36,13 @@
   </header>
 <!-- ================= HERO SECTION ================= -->
 <section class="hero" id="home" aria-label="Epic Mind Media hero">
-  <!-- Video Wrapper (holds YouTube video) -->
-  <div class="hero__video-wrapper">
-    <video class="hero__video"
-       src="./vids/emm_intro.mp4"
-       autoplay muted playsinline
-       preload="metadata">
-</video>
-   
-  </div>
+<div class="hero__video-wrapper">
+  <video class="hero__video" autoplay muted playsinline preload="metadata" poster="./img/hero_poster.jpg" onended="this.currentTime=this.duration-0.05;this.pause();">
+    <source src="./vids/emm_intro.webm" type="video/webm">
+    <source src="./vids/emm_intro.mp4"  type="video/mp4">
+  </video>
+</div>
+
 
   <!-- Dark gradient overlay for readability -->
   <div class="hero__overlay"></div>

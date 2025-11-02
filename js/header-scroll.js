@@ -1,18 +1,36 @@
-(function(){
+// ================= HEADER SCROLL SCRIPT =================
+(function () {
+  // Select the header element
   const header = document.querySelector('.header');
-  if(!header) return;
+  if (!header) return;
 
   let ticking = false;
-  function onScroll(){
-    const scrolled = window.scrollY > 12; // threshold
+
+  // Function to toggle .is-scrolled class
+  function onScroll() {
+    const scrolled = window.scrollY > 12; // threshold for activation
     header.classList.toggle('is-scrolled', scrolled);
     ticking = false;
   }
 
-  window.addEventListener('scroll', () => {
-    if(!ticking){ requestAnimationFrame(onScroll); ticking = true; }
-  }, { passive:true });
+  // Scroll listener (optimized with requestAnimationFrame)
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
 
-  // initialize on page load
+  // Run once at page load (e.g., refresh mid-scroll)
   onScroll();
+
+  const toggle = document.querySelector('.nav-toggle');
+const nav = document.querySelector('.nav');
+toggle?.addEventListener('click', () => nav.classList.toggle('nav--open'));
+
 })();
+// ================= END HEADER SCROLL SCRIPT =================
